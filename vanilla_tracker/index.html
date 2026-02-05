@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinanceFlow | Professional Tracker</title>
+    <!-- Chart.js for Visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="main-navbar">
+        <div class="logo">FinanceFlow</div>
+        <div class="hamburger" id="hamburger-btn">
+            <span class="line1"></span>
+            <span class="line2"></span>
+            <span class="line3"></span>
+        </div>
+        <div class="nav-links" id="nav-links">
+            <a href="#">Dashboard</a>
+            <a href="#">Transactions</a>
+            <a href="#">Analysis</a>
+            <a href="#">Settings</a>
+            <a href="#" id="nav-logout">Logout</a>
+        </div>
+    </nav>
+
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="glass-container">
+        <header class="header">
+            <div class="header-top">
+                <!-- Removed text title as it is now in nav, or keep it as page title -->
+                <h2>Dashboard</h2>
+                <button id="theme-toggle" class="theme-btn">☀️</button> <!-- Default Sun icon for dark mode start -->
+            </div>
+            <p class="subtitle">Smart Personal Finance Management</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Left Column: Stats & Chart -->
+            <section class="overview-panel">
+                <div class="balance-card">
+                    <h4>Current Balance</h4>
+                    <h1 id="balance" class="balance-amount">$0.00</h1>
+                </div>
+
+                <div class="budget-container">
+                    <div class="budget-header">
+                        <h4>Monthly Budget</h4>
+                        <span id="budget-val">$0 / $2000</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="budget-progress" class="progress-fill"></div>
+                    </div>
+                    <input type="number" id="budget-input" placeholder="Set Budget..." />
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="expenseChart"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="monthlyChart"></canvas>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-card income">
+                        <h4>Income</h4>
+                        <p id="money-plus" class="money plus">+$0.00</p>
+                    </div>
+                    <div class="stat-card expense">
+                        <h4>Expense</h4>
+                        <p id="money-minus" class="money minus">-$0.00</p>
+                    </div>
+                </div>
+
+                <button id="export-btn" class="btn btn-secondary">
+                    Export Data to CSV
+                </button>
+            </section>
+
+            <!-- Right Column: Transactions & Form -->
+            <section class="transaction-panel">
+                <h3>New Transaction</h3>
+                <form id="transaction-form" class="transaction-form">
+                    <div class="form-group">
+                        <label for="text">Description</label>
+                        <input type="text" id="text" placeholder="e.g. Freelance Client" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount <small>(Negative for expense)</small></label>
+                        <input type="number" id="amount" placeholder="0.00" step="0.01" />
+                    </div>
+                    <button class="btn btn-primary" type="submit">Add Transaction</button>
+                </form>
+
+                <h3>Recent History</h3>
+                <ul id="list" class="transaction-list">
+                    <!-- Items injected by View.js -->
+                </ul>
+            </section>
+        </div>
+
+        <!-- AI Sidebar -->
+        <button id="ai-toggle-btn" class="ai-float-btn">🤖 Ask AI</button>
+
+        <aside id="ai-sidebar" class="ai-sidebar">
+            <div class="ai-header">
+                <h3>Finance Assistant</h3>
+                <button id="ai-close-btn">&times;</button>
+            </div>
+            <div id="chat-output" class="chat-output">
+                <div class="ai-msg">Hello! I'm your local finance assistant. Ask me questions like "How much did I spend
+                    on Food?" or "What is my total income?"</div>
+            </div>
+            <form id="chat-form" class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Ask a question..." autocomplete="off">
+                <button type="submit">➤</button>
+            </form>
+        </aside>
+    </main>
+
+    <script type="module" src="./js/App.js"></script>
+</body>
+
+</html>
